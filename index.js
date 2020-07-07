@@ -22,7 +22,7 @@ function calculate(){
 		Fy+=forceArray[i]*(Math.sin(angleArray[i]*(Math.PI)/180));
 	}
 	Resultant=Math.sqrt(Math.pow(Fx,2)+Math.pow(Fy,2));
-	theta =Math.atan(Fy/Fx);
+	theta =Math.atan(Fy/Fx)*180/Math.PI;
 
 	document.write("Fx = ",Fx,"<br>");
 	document.write("Fy = ",Fy,"<br>");
