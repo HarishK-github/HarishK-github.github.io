@@ -24,8 +24,8 @@ function calculate(){
 	Resultant=Math.sqrt(Math.pow(Fx,2)+Math.pow(Fy,2));
 	theta =Math.atan(Fy/Fx);
 
-	document.write("Fx=",Fx,"<br>");
-	document.write("Fy=",Fy,"<br>");
-	document.write("Resultant",Resultant,"<br>");
-	document.write("Resultant theta=",theta,"<br>");
+	document.write("Fx = ",Fx,"<br>");
+	document.write("Fy = ",Fy,"<br>");
+	document.write("Resultant = ",Resultant,"<br>");
+	document.write("Resultant theta = ",theta,"<br>");
 }
