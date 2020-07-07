@@ -9,7 +9,7 @@ function addTo() {
    //to confirm it has been added to the array
 }
 var size = forces.length;
-var size = angle.length;
+
 
 function ansOf(){
 Resultant=0;
