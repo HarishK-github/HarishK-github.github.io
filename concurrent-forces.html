@@ -25,10 +25,10 @@
 	var angles = document.getElementById('angles').value;
 	
 	var forceArray = forces.split(",").map(function(el){
-		return parseInt(el);
+		return parseFloat(el);
 	});
 	var angleArray = angles.split(",").map(function(el){
-		return parseInt(el);
+		return parseFloat(el);
 	});
 
 	var size = forceArray.length;
