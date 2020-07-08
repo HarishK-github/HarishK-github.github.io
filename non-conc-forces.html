@@ -35,16 +35,16 @@
 	var direction = document.getElementById('direction').value;
 
 	var forceArray = forces.split(",").map(function(el){
-		return parseInt(el);
+		return parseFloat(el);
 	});
 	var angleArray = angles.split(",").map(function(el){
-		return parseInt(el);
+		return parseFloat(el);
 	});
 	var distanceArray = distance.split(",").map(function(el){
-		return parseInt(el);
+		return parseFloat(el);
 	});
 	var directionArray = direction.split(",").map(function(el){
-		return parseInt(el);
+		return parseFloat(el);
 	});
 
 	var size = forceArray.length;
@@ -61,9 +61,8 @@
 		Ry+=forceArray[i]*(Math.sin(angleArray[i]*(Math.PI)/180));
 	}
 	for(i=0 ; i<size ; i++){
-		Moment +=
-		(forceArray[i]*(Math.cos(angleArray[i]*(Math.PI)/180))*directionArray[i]*distanceArray[i] + 
-		forceArray[i]*(Math.sin(angleArray[i]*(Math.PI)/180))*directionArray[i]*distanceArray[i]); 
+		Moment += 
+		forceArray[i]*(Math.sin(angleArray[i]*(Math.PI)/180))*directionArray[i]*distanceArray[i]; 
 	}
 
 	R=Math.sqrt(Math.pow(Rx,2)+Math.pow(Ry,2));
