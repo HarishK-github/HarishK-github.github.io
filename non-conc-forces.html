@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Engineering Mech. Calc.</title>
+</head>
+<body>
+	<p><b>How to use:</b></p><br>
+	<p>1) Enter and seperate all the forces and angles in the respective boxes with a comma(,)</p><br>
+	<p><b>2) All the forces should be coming out of the respective point of contact</b></p><br>
+	<p>3) Enter angles w.r.t +ve x-axis in anti-clockwise direction in degrees</p><br>
+	<p>4) Enter direction as +1 if force rotates in anti-clockwise dir. w.r.t given point</p><br>
+	<p>5) Enter direction as -1 if force rotates in clockwise dir. w.r.t given point</p><br>
+	<p>6) Enter perpendicular distance of force w.r.t the mentioned point(given point) in meters</p><br>
+	
+	<label for="forces">Forces(Newton):</label>
+	<input type="text" name="forces" id="forces"><br>
+	
+	<label for="angles">Angles(degree):</label>
+	<input type="text" name="angles" id="angles"><br>
+
+	<label for="direction">direction(+1 or -1 ):</label>
+	<input type="text" name="direction" id="direction"><br>
+
+	<label for="distance">distance(meter):</label>
+	<input type="text" name="distance" id="distance"><br>
+
+	<button onclick="calculate()">Calculate</button>
+</body>
+    <script>
+    	function calculate(){
+	var forces = document.getElementById('forces').value;
+	var angles = document.getElementById('angles').value;
+	var distance = document.getElementById('distance').value;
+	var direction = document.getElementById('direction').value;
+
+	var forceArray = forces.split(",").map(function(el){
+		return parseFloat(el);
+	});
+	var angleArray = angles.split(",").map(function(el){
+		return parseFloat(el);
+	});
+	var distanceArray = distance.split(",").map(function(el){
+		return parseFloat(el);
+	});
+	var directionArray = direction.split(",").map(function(el){
+		return parseFloat(el);
+	});
+
+	var size = forceArray.length;
+	var Rx=0;
+	var Ry=0;
+	var R;
+	var theta;
+	var Moment=0;
+	var x;
+	var y;
+
+	for(i=0; i<size ; i++){
+		Rx+=forceArray[i]*(Math.cos(angleArray[i]*(Math.PI)/180));
+	}
+
+	for(i=0; i<size ; i++){
+		Ry+=forceArray[i]*(Math.sin(angleArray[i]*(Math.PI)/180));
+	}
+	for(i=0 ; i<size ; i++){
+		Moment += 
+		forceArray[i]*directionArray[i]*distanceArray[i]; 
+	}
+
+	R=Math.sqrt((Rx*Rx)+(Ry*Ry));
+	theta =Math.atan(Ry/Rx)*180/Math.PI;
+	x=Moment/Ry;
+	y=Moment/Rx;
+
+	document.write("Rx = ",Rx,"<br>");
+	document.write("Ry = ",Ry,"<br>");
+	document.write("R = ",R,"<br>");
+	document.write("Resultant theta = ",theta,"<br><br>");
+	document.write("Moment at given point = ",Moment,"<br>");
+	document.write("Location of Resultant:<br>");
+	document.write("x = ",x,"<br>");
+	document.write("y = ",y,"<br>");
+}
+    </script>
+</html>
