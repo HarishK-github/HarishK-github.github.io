@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Engineering Mech. Calc.</title>
+</head>
+<body>
+	<p><b>How to use:</b></p><br>
+	<p>1) Enter and seperate all the forces and angles in the respective boxes with a comma(,)</p><br>
+	<p>2) Enter angles w.r.t +ve x-axis in anti-clockwise direction</p><br>
+	<p>3) All forces should be coming out of the origin</p><br>
+	
+	<label for="forces">Forces(Newton):</label>
+	<input type="text" name="forces" id="forces"><br>
+	
+	<label for="angles">Angles(degrees):</label>
+	<input type="text" name="angles" id="angles"><br>
+
+	<button onclick="calculate()">Calculate</button>
+</body>
+    <script>
+    	function calculate(){
+	var forces = document.getElementById('forces').value;
+	var angles = document.getElementById('angles').value;
+	
+	var forceArray = forces.split(",").map(function(el){
+		return parseFloat(el);
+	});
+	var angleArray = angles.split(",").map(function(el){
+		return parseFloat(el);
+	});
+
+	var size = forceArray.length;
+	var Fx=0;
+	var Fy=0;
+	var Resultant;
+	var theta;
+	for(i=0; i<size ; i++){
+		Fx+=forceArray[i]*(Math.cos(angleArray[i]*(Math.PI)/180));
+	}
+	for(i=0; i<size ; i++){
+		Fy+=forceArray[i]*(Math.sin(angleArray[i]*(Math.PI)/180));
+	}
+	Resultant=Math.sqrt((Fx*Fx)+(Fy*Fy));
+	theta =Math.atan(Fy/Fx)*180/Math.PI;
+
+	document.write("Fx = ",Fx,"<br>");
+	document.write("Fy = ",Fy,"<br>");
+	document.write("Resultant = ",Resultant,"<br>");
+	document.write("Resultant theta = ",theta,"<br>");
+}
+    </script>
+</html>
