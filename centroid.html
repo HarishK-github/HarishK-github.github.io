@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Engineering Mech. Calc.</title>
+</head>
+<body>
+	<p><b>Area calculator</b></p>
+	<table border="1">
+		<tr>
+			<td>Shapes</td>
+			<td colspan="3">Input</td>
+			<td>Output</td>
+		</tr>
+		<tr>
+			<td>Rectangle</td>
+			<td>breadth = <input type="number" id="breadth"></td>
+			<td>height = <input type="number" id="height"></td>
+			<td></td>
+			<td><input type="numbers" id="rec-area"></td>
+		</tr>
+		<tr>
+			<td>Triangle</td>
+			<td>s1 = <input type="number" id="s1"></td>
+			<td>s2 = <input type="number" id="s2"></td>
+			<td>angle(s1-s2) = <input type="number" id="angle"></td>
+			<td><input type="numbers" id="tri-area"></td>
+		</tr>
+		<tr>
+			<td>Sector</td>
+			<td>radius = <input type="number" id="radius"></td>
+			<td>theta = <input type="number" id="theta"></td>
+			<td></td>
+			<td><input type="number" id="sec-area"></td>
+		</tr>
+		<tr>
+			<td colspan="5" align="center"><button onclick="Area()">Solve</button></td>
+		</tr>
+	</table>
+	<br><br>
+	<p><b>Rules:</b></p>
+	<p>Seperate inputs with a comma(,)</p>
+	<p><b>Centroid Calculator</b></p>
+	<table border="1">
+		<tr>
+			<td>Area</td>
+			<td><input type="text" id="Area"></td>
+		</tr>
+		<tr>
+			<td>xi</td>
+			<td><input type="text" id="xi"></td>
+		</tr>
+		<tr>
+			<td>yi</td>
+			<td><input type="text" id="yi"></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><button onclick="Centroid()">Solve</button></td>
+		</tr>
+	</table>
+	<br>
+	<p><b>Answer</b></p>
+	<table border="0">
+		<tr>
+			<td>X = <input type="number" id="X"></td>
+			<td>Y = <input type="number" id="Y"></td>
+		</tr>
+	</table>
+</body>
+    <script>
+    	function Area(){
+    		var b = document.getElementById("breadth").value;
+    		var h = document.getElementById('height').value;
+    		var s1 = document.getElementById('s1').value;
+    		var s2 = document.getElementById('s2').value;
+    		var angle = document.getElementById('angle').value;
+    		var radius = document.getElementById('radius').value;
+    		var theta = document.getElementById('theta').value;
+
+    		var Rectangle = b*h;
+    		var Triangle = 1/2*s1*s2*Math.sin(angle*Math.PI/180);
+    		var Sector = (theta/360)*Math.PI*radius*radius;
+
+    		document.getElementById('rec-area').value = Rectangle;
+    		document.getElementById('tri-area').value = Triangle;
+    		document.getElementById('sec-area').value = Sector;
+    	}
+
+    	function Centroid(){
+    		var Area = document.getElementById('Area').value;
+    		var xi   = document.getElementById('xi').value;
+    		var yi   = document.getElementById('yi').value;
+
+    		var AreaArray = Area.split(",").map(function(el){
+    			return parseFloat(el);
+    		});
+    		var xiArray = xi.split(",").map(function(el){
+    			return parseFloat(el);
+    		});
+    		var yiArray = yi.split(",").map(function(el){
+    			return parseFloat(el);
+    		});
+
+    		var size = AreaArray.length;
+    		var Aixi=0,Aiyi=0,Ai=0,X,Y;
+
+    		for(c=0 ; c<size ; c++){
+    			Aixi += AreaArray[c]*xiArray[c];
+    		}
+    		for(c=0 ; c<size ; c++){
+    			Aiyi += AreaArray[c]*yiArray[c];
+    		}
+    		for(c=0 ; c<size ; c++){
+    			Ai += AreaArray[c];
+    		}
+
+    		X = Aixi/Ai;
+    		Y = Aiyi/Ai;
+
+    		document.getElementById('X').value = X;
+    		document.getElementById('Y').value = Y;
+    	}
+    </script>
+</html>
