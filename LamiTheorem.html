@@ -1,0 +1,69 @@
+<html>
+    <head>
+<title>Lami's Theorem</title>
+    </head>
+<body>
+<p>Enter 0 if value is unknown</p>
+<p>Enter only one known value</p>
+<form>
+<label for="p"> P: </label>
+<input name="p" type="number" id="p"> <br>
+<label for="alpha"></label>Enter angle between R & Q: </label>
+<input name="alpha" type="number" id="alpha"> <br>
+             
+
+<label for="q"> Q: </label>
+<input name="q" type="number" id="q"> <br>
+<label for="beta"></label>Enter angle between P & R: </label>
+<input name="beta" type="number" id="beta"> <br>
+
+<label for="r"></label> R: </label>
+<input name="r" type="number" id="r"> <br>            
+<label for="gamma"></label>Enter angle between Q & P: </label>
+<input name="gamma" type="number" id="gamma"> <br>
+
+<button type="button" onclick="calculate()">Calculate</button>
+</form>
+<script>
+function calculate()
+{ 
+var p = parseFloat(document.getElementById('p').value);
+var q = parseFloat(document.getElementById('q').value);
+var r = parseFloat(document.getElementById('r').value);
+var alpha = parseFloat(document.getElementById('alpha').value);
+var beta = parseFloat(document.getElementById('beta').value);
+var gamma = parseFloat(document.getElementById('gamma').value);
+var sina = Math.sin(alpha*Math.PI/180);
+var sinb = Math.sin(beta*Math.PI/180);
+var sinc = Math.sin(gamma*Math.PI/180);
+if(alpha !="" && beta !="" && gamma != "") 
+{
+    if ( p != "0")
+    {
+     r=p*sinc/sina;
+     q=p*sinb/sina;
+     document.write("R is "+r+"<br>");
+     document.write("Q is "+q+"<br>");
+    }
+    else if ( q != "0")
+    {
+     r=q*sinc/sinb;
+     p=q*sina/sinb;
+     document.write("P is "+p+"<br>");
+     document.write("R is "+r+"<br>");
+    }
+    else if ( r != "0")
+    {
+     p=r*sina/sinc
+     q=r*sinb/sinc;
+     document.write("P is "+p+"<br>");
+     document.write("Q is "+q+"<br>");
+    }    
+}        
+}
+    
+            
+</script>
+            
+</body>
+</html>
